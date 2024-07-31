@@ -1,4 +1,4 @@
-package torrentfile
+package torrent
 
 import (
 	"bytes"
@@ -13,6 +13,11 @@ type bencodeInfo struct {
 	PieceLength int    `bencode:"piece length"`
 	Length      int    `bencode:"length"`
 	Name        string `bencode:"name"`
+}
+
+type BencodeTorrentFile struct {
+	Announce string      `bencode:"announce"`
+	Info     bencodeInfo `bencode:"info"`
 }
 
 // hash computes the SHA-1 hash for BencodeInfo.
