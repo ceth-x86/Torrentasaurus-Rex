@@ -1,6 +1,7 @@
 package peers
 
 import (
+	"crypto/rand"
 	"encoding/binary"
 	"errors"
 	"net"
@@ -40,4 +41,13 @@ func Unmarshal(peersBin []byte) ([]Peer, error) {
 		}
 	}
 	return peers, nil
+}
+
+func GeneratePeerID() ([20]byte, error) {
+	var peerID [20]byte
+
+	if _, err := rand.Read(peerID[:]); err != nil {
+		return [20]byte{}, errors.New("failed to generate peer ID: " + err.Error())
+	}
+	return peerID, nil
 }

@@ -68,3 +68,16 @@ func TestUnmarshalSinglePeer(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, expected, result)
 }
+
+func TestGeneratePeerID(t *testing.T) {
+	peerID, err := GeneratePeerID()
+
+	// Check that there is no error
+	assert.NoError(t, err, "error should be nil")
+
+	// Check that the length of the generated peerID is 20
+	assert.Equal(t, 20, len(peerID), "peerID length should be 20")
+
+	// Check that peerID is not empty (it has at least one non-zero byte)
+	assert.NotEqual(t, [20]byte{}, peerID, "peerID should not be empty")
+}
