@@ -1,6 +1,3 @@
-// TODO: refactore
-// TODO: tests (don't forget about completeHandshake)
-
 package handshake
 
 import (
